@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-SELECT SUBSTRING(trans_date, 1,7) AS month
+SELECT LEFT(trans_date, 7) AS month
         , country
         , COUNT(id) AS trans_count
         , SUM(CASE WHEN state = 'approved' THEN 1 ELSE 0 END) AS approved_count
