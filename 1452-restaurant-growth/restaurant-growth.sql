@@ -7,4 +7,4 @@ SELECT DISTINCT visited_on
 FROM Customer
 ORDER BY 1
 )a
-WHERE visited_on >= (SELECT MIN(visited_on) FROM Customer) + 6
+WHERE visited_on >= DATE_ADD((SELECT MIN(visited_on) FROM Customer), INTERVAL 6 DAY)
