@@ -1,0 +1,5 @@
+# Write your MySQL query statement below
+SELECT ROUND(SUM(tiv_2016),2) AS tiv_2016
+FROM Insurance
+WHERE tiv_2015 IN (SELECT DISTINCT tiv_2015 FROM Insurance GROUP BY 1 HAVING COUNT(DISTINCT pid)>=2)
+AND CONCAT(lat,lon) IN (SELECT CONCAT(lat,lon) FROM Insurance GROUP BY 1 HAVING COUNT(DISTINCT pid)=1)
