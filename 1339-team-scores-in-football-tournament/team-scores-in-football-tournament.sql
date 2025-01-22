@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-
+# UNION, JOIN, CASE WHEN
 SELECT t.team_id, t.team_name
     , SUM(IFNULL(CASE WHEN m.host_team = t.team_id AND m.host_goals > m.guest_goals THEN 3
            WHEN m.host_team = t.team_id AND m.host_goals = m.guest_goals THEN 1
@@ -13,6 +13,7 @@ OR t.team_id = m.guest_team
 GROUP BY 1,2
 ORDER BY 3 DESC, 1
 ;
+
 
 
 
