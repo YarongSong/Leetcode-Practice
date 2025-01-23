@@ -13,3 +13,4 @@ ON p.product_id = o.product_id
 ) a
 WHERE RNK = 1
 ORDER BY 1, 2, 3
+;
