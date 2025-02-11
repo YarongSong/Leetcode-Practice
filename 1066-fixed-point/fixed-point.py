@@ -12,8 +12,8 @@ class Solution:
                 left = mid + 1
         if arr[left] == left:
             return left
-        elif arr[right] == right:
-            return right
+        # elif arr[right] == right:
+        #     return right
         return -1
 
 
