@@ -9,7 +9,7 @@ WITH cnt_each AS(
     SELECT MAX(CNT) AS max_cnt, MIN(CNT) AS min_cnt
     FROM cnt_each
 )
-SELECT name AS activity
+SELECT DISTINCT name AS activity
 FROM cnt_each
 WHERE CNT <> (SELECT max_cnt FROM max_min)
 AND CNT <> (SELECT min_cnt FROM max_min)
