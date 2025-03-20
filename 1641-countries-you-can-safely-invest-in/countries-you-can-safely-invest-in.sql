@@ -2,7 +2,7 @@
 
 WITH CTE AS(
 SELECT c.caller_id, c.duration, ct.country_code, ct.name
-FROM (SELECT DISTINCT * FROM Calls) c
+FROM Calls c
 LEFT JOIN Person p
 ON c.caller_id = p.id
 LEFT JOIN Country ct
@@ -11,7 +11,7 @@ ON LEFT(p.phone_number,3) = ct.country_code
 UNION ALL
 
 SELECT c.callee_id, c.duration, ct.country_code, ct.name
-FROM (SELECT DISTINCT * FROM Calls) c
+FROM Calls c
 LEFT JOIN Person p
 ON c.callee_id = p.id
 LEFT JOIN Country ct
