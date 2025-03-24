@@ -23,9 +23,10 @@ WITH RECURSIVE temp AS(
 
     UNION
 
+    -- Recursive query
     SELECT ids + 1 AS ids
     FROM temp
-    WHERE ids < (SELECT MAX(customer_id) - 1 FROM Customers)
+    WHERE ids <= (SELECT MAX(customer_id) - 1 FROM Customers)
 
 )
 
