@@ -17,19 +17,21 @@
 
 
 # ids
-WITH RECURSIVE id_seq AS (
-    -- Anchor Query: base case
-    SELECT 1 as continued_id
-    UNION 
-    -- Recursive query
-    SELECT continued_id + 1
-    FROM id_seq
-    WHERE continued_id < (SELECT MAX(customer_id) FROM Customers) 
+WITH RECURSIVE temp AS(
+    -- Anchor query
+    SELECT 1 AS ids
+
+    UNION
+
+    SELECT ids + 1 AS ids
+    FROM temp
+    WHERE ids < (SELECT MAX(customer_id) - 1 FROM Customers)
+
 )
 
-SELECT continued_id AS ids
-FROM id_seq
-WHERE continued_id NOT IN (SELECT customer_id FROM Customers) 
+SELECT ids
+FROM temp
+WHERE ids NOT IN (SELECT customer_id FROM Customers)
 ;
 
 
