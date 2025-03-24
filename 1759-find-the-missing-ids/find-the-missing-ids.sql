@@ -1,9 +1,27 @@
 # Write your MySQL query statement below
 
+-- WITH RECURSIVE cte_name (column1, column2, ...) AS (
+--     -- Anchor query
+--     SELECT ...
+
+--     UNION ALL
+
+--     -- Recursive query (must reference cte_name)
+--     SELECT ...
+--     FROM cte_name
+--     WHERE ...
+-- )
+-- SELECT * FROM cte_name;
+
+
+
+
 # ids
 WITH RECURSIVE id_seq AS (
+    -- Anchor Query: base case
     SELECT 1 as continued_id
     UNION 
+    -- Recursive query
     SELECT continued_id + 1
     FROM id_seq
     WHERE continued_id < (SELECT MAX(customer_id) FROM Customers) 
@@ -12,6 +30,7 @@ WITH RECURSIVE id_seq AS (
 SELECT continued_id AS ids
 FROM id_seq
 WHERE continued_id NOT IN (SELECT customer_id FROM Customers) 
+;
 
 
 
