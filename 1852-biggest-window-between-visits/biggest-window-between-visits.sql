@@ -12,7 +12,7 @@ WITH cte AS(
 
 )
 SELECT user_id 
-    , MAX(DATEDIFF(nxt_date, visit_date)) AS biggest_window
+    , MAX(DATEDIFF(IFNULL(nxt_date, DATE('2021-1-1')), visit_date)) AS biggest_window
 FROM(
     SELECT user_id
         , visit_date
