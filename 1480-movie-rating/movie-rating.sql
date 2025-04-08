@@ -1,24 +1,25 @@
 # Write your MySQL query statement below
+-- results
+-- 1) 1 user name: greatest number of movies, order by name 
+-- 2) 1 movie name: highest average rating in February 2020
 
-(SELECT u.name AS results
-FROM MovieRating m
-INNER JOIN Users u
-ON m.user_id = u. user_id
-GROUP BY 1
-ORDER BY COUNT(DISTINCT m.movie_id) DESC, name
+(
+SELECT b.name AS results
+FROM MovieRating a
+JOIN Users b
+ON a.user_id = b.user_id
+GROUP BY a.user_id, b.name
+ORDER BY COUNT(a.movie_id) DESC, b.name
 LIMIT 1
 )
-
 UNION ALL
-
-(SELECT title AS results
-FROM MovieRating m1
-INNER JOIN Movies m2
-ON m1.movie_id = m2.movie_id
-WHERE YEAR(created_at) = 2020
-AND MONTH(created_at) = 2
-GROUP BY 1
-ORDER BY AVG(rating) DESC, title
+(
+SELECT b.title AS results
+FROM MovieRating a
+JOIN Movies b
+ON a.movie_id = b.movie_id
+WHERE YEAR(a.created_at) = 2020 AND MONTH(a.created_at) = 2
+GROUP BY a.movie_id, b.title
+ORDER BY AVG(a.rating) DESC, b.title
 LIMIT 1
 )
-
