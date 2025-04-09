@@ -12,16 +12,17 @@ WITH user1 AS(
         FROM Purchases
         ) A
     WHERE DATEDIFF(nxt_purchase_date, purchase_date) <= 7
-), user2 AS(
-    SELECT DISTINCT user_id
-    FROM Purchases
-    GROUP BY user_id
-    HAVING COUNT(DISTINCT purchase_id) < 2
 )
+-- ), user2 AS(
+--     SELECT DISTINCT user_id
+--     FROM Purchases
+--     GROUP BY user_id
+--     HAVING COUNT(DISTINCT purchase_id) < 2
+-- )
 SELECT DISTINCT user_id
 FROM Purchases
 WHERE user_id IN (SELECT user_id FROM user1)
-AND user_id NOT IN (SELECT user_id FROM user2)
+-- AND user_id NOT IN (SELECT user_id FROM user2)
 ORDER BY 1 
 ;
 
