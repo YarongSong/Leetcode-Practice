@@ -3,58 +3,26 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-
         if n == 0:
-            return nums1
+            return 
+        elif m == 0:
+            for i in range(len(nums2)):
+                nums1[i] = nums2[i]
 
-        i = m - 1
-        j = n - 1
-        k = m + n - 1
-        while k > 0 and j >= 0 and i >= 0:
+        i = m-1
+        j = n-1
+
+        while i >= 0 and j >= 0:
             if nums1[i] >= nums2[j]:
-                nums1[k] = nums1[i]
+                nums1[i+j+1] = nums1[i]
                 i -= 1
             else:
-                nums1[k] = nums2[j]
+                nums1[i+j+1] = nums2[j]
                 j -= 1
-            k -= 1
-            print(nums1)
         
         while j >= 0:
-            nums1[k] = nums2[j]
-            k -= 1
+            nums1[i+j+1] = nums2[j]
             j -= 1
         
-        
+        return 
 
-
-
-
-
-
-        # i = m
-        # j = 0
-        # while i < m + n:
-        #     nums1[i] = nums2[j]
-        #     i += 1
-        #     j += 1
-
-        # nums1.sort() 
-
-
-        
-        # i = 0
-        # j = 0
-        # while (i < len(nums1) - 1) and j < (len(nums2) - 1):
-        #     s = nums1[i]
-        #     if s <= nums2[j]:
-        #         nums1[i] = s
-        #         i += 1
-        #     elif s > nums2[j]:
-        #         nums1[i] = nums2[j]
-        #         i += 1
-        #         j += 1
-
-
-
-        
