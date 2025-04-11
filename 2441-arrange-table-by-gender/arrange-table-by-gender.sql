@@ -12,5 +12,7 @@ FROM (
         , RANK() OVER(PARTITION BY gender ORDER BY user_id) AS rnk
     FROM Genders
     ) A
-ORDER BY rnk, gender
+ORDER BY rnk, CASE WHEN gender = 'female' THEN 1 
+                   WHEN gender = 'other' THEN 2
+                   ELSE 3 END 
 ;
