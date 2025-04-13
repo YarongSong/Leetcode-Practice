@@ -7,7 +7,7 @@ class Solution:
         i = 0 
         while i < len(haystack):
             k = i
-            while k < len(haystack) and j < len(needle) and (k - i + 1) <= len(needle):
+            while k < len(haystack) and j < len(needle):
                 if haystack[k] == needle[j]:
                     k += 1
                     j += 1
