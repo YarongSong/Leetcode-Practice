@@ -8,12 +8,10 @@ class RecentCounter:
 
     def ping(self, t: int) -> int:
         self.time.append(t)
-        self.counter = 0
-        for tt in self.time:
-            if tt >= t - 3000:
-                self.counter += 1
+        while self.time[self.counter] < t - 3000:
+            self.counter += 1
         
-        return self.counter
+        return len(self.time) - 1 - self.counter + 1
 
 
 
