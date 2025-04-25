@@ -7,7 +7,6 @@ class Solution:
         for s in strs:
             min_len = min(len(s), min_len)
             
-        print(min_len)
         
         i = 0
         res = []
