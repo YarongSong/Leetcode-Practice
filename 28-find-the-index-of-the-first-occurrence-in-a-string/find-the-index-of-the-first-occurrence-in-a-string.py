@@ -7,15 +7,14 @@ class Solution:
         j = 0
         res = float('inf')
         while i < len(haystack) and j < len(needle):
-            if haystack[i] == needle[j] and j == 0:
+            if haystack[i] == needle[j]:
                 res = min(i,res)
                 i += 1
                 j += 1
                 print(j)
-            elif haystack[i] == needle[j]:
-                i += 1
-                j += 1
-                print(j)
+            # elif haystack[i] == needle[j]:
+            #     i += 1
+            #     j += 1
             elif haystack[i] != needle[j] and j == 0:
                 j = 0
                 i += 1  
