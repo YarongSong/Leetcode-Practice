@@ -11,21 +11,36 @@ class Solution(object):
         """
         if head.next is None:
             return True
-            
-        lst = []
-        while head:
-            lst.append(head.val)
-            head = head.next
+        if head.next.next is None and head.val == head.next.val:
+            return True
+        elif head.next.next is None:
+            return False
+
         
-        i = 0
-        j = len(lst) - 1
-        while i <= j:
-            if lst[i] == lst[j]:
-                i += 1
-                j -= 1
+        s = f = head
+        while f.next and f.next.next:
+            s = s.next
+            f = f.next.next
+        
+        head2 = s.next
+
+        cur = None
+        while head2:
+            nxt = head2.next
+            head2.next = cur
+            cur = head2
+            head2 = nxt
+        
+        while head and cur:
+            if head.val == cur.val:
+                head =  head.next
+                cur = cur.next
             else:
                 return False
         
         return True
+
+
+
 
         
