@@ -5,18 +5,19 @@ class Solution:
         elif n == 2:
             return 2
 
-        a = 1
-        b = 2
+        s1 = 1
+        s2 = 2
+
         i = 3
         res = 0
         while i <= n:
-            res = a + b
-            a = b
-            b = res
+            res = s1 + s2
+            s1 = s2
+            s2 = res
             i += 1
         
         return res
-        
 
-        
+
+
         
