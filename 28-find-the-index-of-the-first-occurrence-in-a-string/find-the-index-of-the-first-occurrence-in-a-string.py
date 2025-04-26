@@ -11,7 +11,6 @@ class Solution:
                 res = min(i,res)
                 i += 1
                 j += 1
-                print(j)
             # elif haystack[i] == needle[j]:
             #     i += 1
             #     j += 1
