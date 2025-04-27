@@ -1,24 +1,30 @@
+"""
+1) len(word1) == len(word2)
+2) len(word1) > len(word2)
+3) len(word1) < len(word2)
+"""
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        res = []
-        i = 0
-        j = 0
-        while i < len(word1) and j < len(word2):
-            res.append(word1[i])
-            i += 1
-            res.append(word2[j])
-            j += 1
-        
-        while i < len(word1):
-            res.append(word1[i])
-            i += 1
 
-        while j < len(word2):
-            res.append(word2[j])
-            j += 1
+
+        res = []
+        w1 = 0
+        w2 = 0
+        while w1 < len(word1) and w2 < len(word2):
+            res.append(word1[w1])
+            res.append(word2[w2])
+            w1 += 1
+            w2 += 1
+        
+        while w1 < len(word1):
+            res.append(word1[w1])
+            w1 += 1
+        
+        while w2 < len(word2):
+            res.append(word2[w2])
+            w2 += 1
         
         return "".join(res)
-
 
 
 
