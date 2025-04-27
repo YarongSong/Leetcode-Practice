@@ -5,7 +5,7 @@ class RecentCounter:
         self.res = []
         
     def ping(self, t: int) -> int:
-        if self.counter == 0:
+        if len(self.res) == 0:
             self.counter += 1
             self.res.append(t)
             return self.counter
