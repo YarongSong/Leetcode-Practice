@@ -10,6 +10,7 @@ WITH two_sce AS(
     JOIN (SELECT X, Y FROM Coordinates WHERE X <> Y) b
     ON a.X = b.Y
     AND a.Y = b.X
+    AND a.X < a.Y
 
     UNION
 
