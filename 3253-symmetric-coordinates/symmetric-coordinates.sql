@@ -6,8 +6,8 @@
 WITH two_sce AS(
     SELECT a.X AS x
         , a.Y AS y
-    FROM (SELECT DISTINCT X, Y FROM Coordinates WHERE X <> Y) a
-    JOIN (SELECT DISTINCT X, Y FROM Coordinates WHERE X <> Y) b
+    FROM (SELECT X, Y FROM Coordinates WHERE X <> Y) a
+    JOIN (SELECT X, Y FROM Coordinates WHERE X <> Y) b
     ON a.X = b.Y
     AND a.Y = b.X
 
