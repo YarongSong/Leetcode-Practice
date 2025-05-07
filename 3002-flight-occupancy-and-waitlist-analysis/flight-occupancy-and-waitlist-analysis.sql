@@ -7,7 +7,7 @@
 -- 2) Compare the total # with capacity (case when)
 
 SELECT flight_id
-    , CASE WHEN capacity >= IFNULL(tot_cnt,0) THEN IFNULL(tot_cnt,0) ELSE capacity END AS booked_cnt
+    , CASE WHEN capacity >= tot_cnt THEN IFNULL(tot_cnt,0) ELSE capacity END AS booked_cnt
     , CASE WHEN capacity >= IFNULL(tot_cnt,0) THEN 0 ELSE IFNULL(tot_cnt,0) - capacity END AS waitlist_cnt
 FROM(
     SELECT b.flight_id
