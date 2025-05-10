@@ -14,8 +14,7 @@ FROM(
     FROM(
         SELECT REGEXP_SUBSTR(tweet, '\#[a-zA-Z0-9]+') AS hashtag, COUNT(tweet_id) AS hashtag_count
         FROM Tweets
-        WHERE YEAR(tweet_date) = 2024
-        AND MONTH(tweet_date) = 2
+        WHERE DATE_FORMAT(tweet_date, '%Y-%m') = '2024-02'
         GROUP BY 1
         ) A
     ) B
