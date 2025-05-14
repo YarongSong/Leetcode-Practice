@@ -30,14 +30,21 @@ WITH RECURSIVE dates AS(
 
 SELECT FLOOR(DATEDIFF(a.Date_Nov , DATE('2023-11-01'))/7) + 1 AS week_of_month
     , d.membership
-    , SUM(IFNULL(CASE WHEN c.user_id IS NOT NULL THEN b.amount_spend ELSE 0 END,0)) AS total_amount
+    , SUM(IFNULL(b.amount_spend,0)) AS total_amount
 FROM friday a
 CROSS JOIN member d
-LEFT JOIN Purchases b
+LEFT JOIN (
+    SELECT A.*, B.membership 
+    FROM Purchases A
+    JOIN Users B
+    ON A.user_id = B.user_id
+    WHERE membership IN ('Premium', 'VIP')
+    ) b
 ON b.purchase_date = a.Date_Nov
-LEFT JOIN (SELECT * FROM Users WHERE membership IN ('Premium', 'VIP')) c
-ON b.user_id  = c.user_id
-AND c.membership = d.membership
+AND d.membership = b.membership
+-- LEFT JOIN (SELECT * FROM Users WHERE membership IN ('Premium', 'VIP')) c
+-- ON b.user_id  = c.user_id
+-- AND c.membership = d.membership
 GROUP BY 1, 2
 ORDER BY 1,2
 ;
