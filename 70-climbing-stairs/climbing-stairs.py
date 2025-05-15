@@ -4,10 +4,9 @@ class Solution:
             return 1
         elif n == 2:
             return 2
-
+        
         s1 = 1
         s2 = 2
-
         i = 3
         res = 0
         while i <= n:
