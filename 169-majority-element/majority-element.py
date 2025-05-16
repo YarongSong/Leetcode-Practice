@@ -8,10 +8,7 @@ class Solution:
             else:
                 d[n] = 1
         
-        
-        for n in d:
-            if d[n] > l/2:
-                return n
-        
-    
+        for k, v in d.items():
+            if v > l/2:
+                return k
         
