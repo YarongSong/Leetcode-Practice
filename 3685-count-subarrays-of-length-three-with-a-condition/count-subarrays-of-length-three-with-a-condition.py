@@ -1,8 +1,5 @@
 class Solution:
     def countSubarrays(self, nums: List[int]) -> int:
-        if len(nums) < 3:
-            return 0
-        
         i = 0
         res = 0
         while i <= len(nums) - 3:
@@ -11,5 +8,6 @@ class Solution:
             i += 1
         
         return res
+
 
         
