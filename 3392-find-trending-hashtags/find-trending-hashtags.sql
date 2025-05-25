@@ -13,7 +13,7 @@ FROM(
         , hashtag_count
         , RANK() OVER(ORDER BY hashtag_count DESC, hashtag DESC) AS RNK
     FROM(
-        SELECT REGEXP_SUBSTR(tweet, '\#[a-zA-Z0-9]+') AS hashtag
+        SELECT REGEXP_SUBSTR(tweet, '\\#[a-zA-Z0-9]+') AS hashtag
             , COUNT(tweet_id) AS hashtag_count
         FROM Tweets
         GROUP BY 1
