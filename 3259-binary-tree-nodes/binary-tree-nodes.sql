@@ -1,37 +1,47 @@
 # Write your MySQL query statement below
 
--- N | Type
--- Order by node ASC
+-- N | Type 
+-- Root: no parent
+-- Leaf: no child
 
--- Root
-WITH cte AS(
+-- Edge: one node
+
+WITH root AS(
     SELECT N, 'Root' AS Type
     FROM Tree
     WHERE P IS NULL
-
-    UNION 
-
+), leaf AS(
     SELECT N, 'Leaf' AS Type
-    FROM Tree 
-    WHERE N NOT IN (SELECT P FROM Tree WHERE P IS NOT NULL)
+    FROM(
+        SELECT a.N, a.P, b.N AS child 
+        FROM Tree a
+        LEFT JOIN Tree b
+        ON a.N = b.P
+    ) A
+    WHERE child IS NULL 
     AND P IS NOT NULL
-
-), cte2 AS(
+), inner_n AS(
     SELECT N, 'Inner' AS Type
     FROM Tree
-    WHERE N NOT IN (SELECT N FROM cte)
+    WHERE N NOT IN (SELECT N FROM root)
+    AND N NOT IN (SELECT N FROM leaf)
 )
 
 SELECT *
-FROM (
+FROM(
     SELECT *
-    FROM cte
+    FROM root
 
-    UNION 
+    UNION
 
     SELECT *
-    FROM cte2
+    FROM leaf
+
+    UNION
+
+    SELECT *
+    FROM inner_n
 ) A
-ORDER BY 1
+ORDER BY N
 ;
 
