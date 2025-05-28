@@ -1,20 +1,25 @@
 # Write your MySQL query statement below
-WITH cte AS(
-    SELECT user_id, MIN(activity_date) AS fst_login_date
-    FROM Traffic 
+
+-- login_date | user_count
+-- 1) time range
+-- 2) user: min(login) 
+-- 3) date: at least one user loggin for the first time
+-- 4) aggregate
+
+
+WITH first AS(
+    SELECT user_id
+        , MIN(activity_date) AS first_login
+    FROM Traffic
     WHERE activity = 'login'
     GROUP BY 1
+    HAVING MIN(activity_date) >= DATE_SUB('2019-06-30', INTERVAL 90 DAY) 
+    AND MIN(activity_date) <= DATE('2019-06-30')
 )
-SELECT t.activity_date AS login_date
-    , COUNT(DISTINCT c.user_id) AS user_count
-FROM(
-    SELECT DISTINCT activity_date 
-    FROM Traffic 
-    WHERE activity_date >= DATE_SUB("2019-06-30", INTERVAL 90 DAY)
-    )t
-INNER JOIN cte c
-ON t.activity_date = fst_login_date
-GROUP BY 1
+
+SELECT first_login AS login_date
+    , COUNT(user_id) AS user_count
+FROM first
+GROUP BY first_login
 ;
-# SELECT DATE_SUB("2019-06-30", INTERVAL 90 DAY)
 
