@@ -1,13 +1,20 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        d = {}
+        if len(nums) < 2:
+            return
+
         i = 0
-        while i < len(nums):
-            if target - nums[i] not in d:
-                d[nums[i]] = i
-                i += 1
-            else:
-                return (d[target - nums[i]], i)
+        j = 1
+        while i < len(nums) - 1:
+            while j < len(nums):
+                if nums[i] + nums[j] == target:
+                    return (i,j)
+                else:
+                    j += 1
+            i += 1
+            j = i + 1
+        
         return 
+
 
         
